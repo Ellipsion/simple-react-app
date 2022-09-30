@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Simple react app</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+</head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/jsx">
+      const app = document.getElementById("app")
+
+      function Header({ title }) {
+        return <h1>{title ? title : "Default title"}</h1>
+      }
+
+      function HomePage() {
+        const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"]
+
+        const [likes, setLikes] = React.useState(0)
+
+        function handleClick() {
+          setLikes(likes + 1)
+        }
+
+        return (
+          <div className="container m-5 p-5">
+            <Header title="Develop. Preview. Ship. 🚀" />
+            <p>A simple react app in browser.</p>
+            <p>Using <span><a href="https://unpkg.com/">unpkg.com</a></span> cdn.</p>
+            <p>Styled with <span><a href="https://getbootstrap.com/"><img src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png" alt="" width={30} /></a></span></p>
+            <ul className="list-group my-5">
+              {names.map((name) => (
+                <li className="list-group-item" key={name}>{name}</li>
+              ))}
+            </ul>
+
+            <button className="btn btn-lg btn-light w-100 mb-5" onClick={handleClick}>{likes ? '❤'.repeat(likes) : 'Like'}</button>
+            <p className="mt-5">Ellipsion.</p>
+          </div>
+        )
+      }
+
+      ReactDOM.render(<HomePage />, app)
+    </script>
+  </body>
+</html>
